@@ -1,0 +1,185 @@
+/* ======================== */
+/* 1. Grid & Cell Enhancements */
+/* ======================== */
+#grid-container {
+    display: grid;
+    gap: 2px;
+    width: 600px;
+    height: 600px;
+    margin: 30px auto;
+    background: #2d3748;
+    border: 3px solid #4a5568;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.cell {
+    background: #edf2f7;
+    border: 1px solid #cbd5e0;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cell:hover {
+    background: #e2e8f0;
+    transform: scale(1.03);
+    z-index: 2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ======================== */
+/* 2. Special Cell Styles */
+/* ======================== */
+.start {
+    background: #38a169 !important;
+    background: linear-gradient(135deg, #38a169 0%, #48bb78 100%) !important;
+    box-shadow: 0 0 10px rgba(56, 161, 105, 0.5);
+}
+
+.end {
+    background: #e53e3e !important;
+    background: linear-gradient(135deg, #e53e3e 0%, #f56565 100%) !important;
+    box-shadow: 0 0 10px rgba(229, 62, 62, 0.5);
+}
+
+.wall {
+    background: #2d3748 !important;
+    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%) !important;
+    border-color: #1a202c !important;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* ======================== */
+/* 3. Pathfinding Visuals */
+/* ======================== */
+.visited {
+    background: #63b3ed;
+    background: linear-gradient(135deg, #4299e1 0%, #63b3ed 100%);
+    animation: pulse 0.5s ease-out;
+}
+
+.path {
+    background: #f6e05e;
+    background: linear-gradient(135deg, #f6e05e 0%, #ecc94b 100%);
+    box-shadow: 0 0 5px rgba(246, 224, 94, 0.7);
+    animation: pathGlow 1s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes pathGlow {
+    from { box-shadow: 0 0 5px rgba(246, 224, 94, 0.5); }
+    to { box-shadow: 0 0 15px rgba(246, 224, 94, 0.9); }
+}
+
+/* ======================== */
+/* 4. Control Panel Upgrade */
+/* ======================== */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.controls button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.controls button:first-child {
+    background: linear-gradient(135deg, #38a169 0%, #48bb78 100%);
+    color: white;
+}
+
+.controls button:nth-child(2) {
+    background: linear-gradient(135deg, #e53e3e 0%, #f56565 100%);
+    color: white;
+}
+
+.controls button:nth-child(3) {
+    background: linear-gradient(135deg, #3182ce 0%, #63b3ed 100%);
+    color: white;
+}
+
+.controls button:last-child {
+    background: linear-gradient(135deg, #718096 0%, #a0aec0 100%);
+    color: white;
+}
+
+.controls button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.controls button:active {
+    transform: translateY(1px);
+}
+
+/* ======================== */
+/* 5. Status Display Upgrade */
+/* ======================== */
+#status-display {
+    text-align: center;
+    margin: 20px auto;
+    padding: 15px;
+    font-size: 1.2em;
+    font-weight: 500;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    border-left: 5px solid #a0aec0;
+    transition: all 0.3s ease;
+}
+
+.searching {
+    color: #2b6cb0;
+    border-left-color: #3182ce;
+    background: #ebf8ff;
+}
+
+.success {
+    color: #2f855a;
+    border-left-color: #38a169;
+    background: #f0fff4;
+}
+
+.error {
+    color: #c53030;
+    border-left-color: #e53e3e;
+    background: #fff5f5;
+}
+
+/* ======================== */
+/* 6. Responsive Adjustments */
+/* ======================== */
+@media (max-width: 650px) {
+    #grid-container {
+        width: 95vw;
+        height: 95vw;
+    }
+    
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .controls button {
+        width: 80%;
+    }
+}
